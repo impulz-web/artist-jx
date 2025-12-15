@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { BookingRequest, Ticket, Event, Project, StreamingLink, AboutData, GalleryImage, BannerData } from '../types';
-import { Check, X, LogOut, Image as ImageIcon, Link, Plus, Trash2, Edit2, FileText, Music, Flame, Camera, Calendar } from 'lucide-react';
+import { LogOut, Image as ImageIcon, Link, Plus, Trash2, Edit2, FileText, Music, Flame, Camera, Calendar } from 'lucide-react';
 
 interface DashboardProps {
   bookings: BookingRequest[];
@@ -171,7 +171,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 
       <div className="container mx-auto px-6 py-8">
         
-        {/* Navigation Tabs */}
+        {/* Navigation Tabs - Temporarily commented out for debugging
         <div className="flex flex-wrap gap-4 md:gap-8 border-b border-neutral-800 mb-8 overflow-x-auto">
             <button
                 onClick={() => setActiveTab('bookings')}
@@ -244,6 +244,10 @@ const Dashboard: React.FC<DashboardProps> = ({
                 Site Content
             </button>
         </div>
+        */}
+        <div className="bg-neutral-900 p-6 border border-neutral-800 mb-8">
+            <p className="text-gold-500 font-bold uppercase tracking-wider">Navigation temporarily disabled for deployment</p>
+        </div>
 
         {/* --- BOOKINGS TAB --- */}
         {activeTab === 'bookings' && (
@@ -254,45 +258,8 @@ const Dashboard: React.FC<DashboardProps> = ({
                         <p className="text-4xl font-bold text-white">{pendingBookings}</p>
                     </div>
                 </div>
-                <div className="overflow-x-auto bg-neutral-900 border border-neutral-800">
-                    <table className="w-full text-left text-sm text-neutral-400">
-                        <thead className="bg-neutral-800 text-white uppercase text-xs font-bold tracking-wider">
-                            <tr>
-                                <th className="p-4">Date</th>
-                                <th className="p-4">Client</th>
-                                <th className="p-4">Event Date</th>
-                                <th className="p-4">Type</th>
-                                <th className="p-4">Budget</th>
-                                <th className="p-4">Status</th>
-                                <th className="p-4">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-neutral-800">
-                            {bookings.map(b => (
-                                <tr key={b.id} className="hover:bg-neutral-800/50">
-                                    <td className="p-4">{new Date(b.submittedAt).toLocaleDateString()}</td>
-                                    <td className="p-4 font-bold text-white">{b.name}</td>
-                                    <td className="p-4">{b.date}</td>
-                                    <td className="p-4"><span className="bg-neutral-800 px-2 py-1 rounded text-xs">{b.eventType}</span></td>
-                                    <td className="p-4 text-white">{b.budget}</td>
-                                    <td className="p-4"><span className="uppercase text-xs font-bold">{b.status}</span></td>
-                                    <td className="p-4 flex gap-2">
-                                        {b.status === 'Pending' && (
-                                            <>
-                                                <button onClick={() => onUpdateBookingStatus(b.id, 'Approved')} className="p-2 bg-green-900 text-green-200 rounded"><Check size={14}/></button>
-                                                <button onClick={() => onUpdateBookingStatus(b.id, 'Declined')} className="p-2 bg-red-900 text-red-200 rounded"><X size={14}/></button>
-                                            </>
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                            {bookings.length === 0 && (
-                                <tr>
-                                    <td colSpan={7} className="p-8 text-center text-neutral-600">No bookings yet.</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                <div className="bg-neutral-900 p-6 border border-neutral-800">
+                    <p className="text-neutral-400">Bookings management temporarily disabled for deployment.</p>
                 </div>
             </div>
         )}
