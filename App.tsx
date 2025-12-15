@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Event, BookingRequest, Ticket, Project, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
-import { INITIAL_EVENTS, MOCK_PROJECTS, INITIAL_HERO_IMAGE, INITIAL_STREAMING_LINKS, INITIAL_ABOUT_DATA, INITIAL_GALLERY_IMAGES, INITIAL_BANNER_DATA, ARTIST_NAME } from './constants';
+import { INITIAL_EVENTS, INITIAL_HERO_IMAGE, INITIAL_STREAMING_LINKS, INITIAL_ABOUT_DATA, INITIAL_GALLERY_IMAGES, INITIAL_BANNER_DATA, ARTIST_NAME } from './constants';
 import Hero from './components/Hero';
 import Banner from './components/Banner';
 import Projects from './components/Projects';
+import Merch from './components/Merch';
 import Events from './components/Events';
 import Booking from './components/Booking';
 import About from './components/About';
@@ -12,18 +13,20 @@ import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
 import StreamingOverlay from './components/StreamingOverlay';
 import Gallery from './components/Gallery';
+import Store from './components/Store';
 import { Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- STATE ---
-  const [view, setView] = useState<'public' | 'dashboard' | 'gallery'>('public');
+  const [view, setView] = useState<'public' | 'dashboard' | 'gallery' | 'store'>('public');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showStreamingOverlay, setShowStreamingOverlay] = useState(false);
+  const [selectedEventForModal, setSelectedEventForModal] = useState<any>(null);
 
   // --- CONTENT STATE (Managed by Dashboard) ---
   const [events, setEvents] = useState<Event[]>(INITIAL_EVENTS);
-  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [heroImage, setHeroImage] = useState<string>(INITIAL_HERO_IMAGE);
   const [streamingLinks, setStreamingLinks] = useState<StreamingLink[]>(INITIAL_STREAMING_LINKS);
   const [aboutData, setAboutData] = useState<AboutData>(INITIAL_ABOUT_DATA);
@@ -172,7 +175,9 @@ const App: React.FC = () => {
       )}
 
       <main>
-        {view === 'gallery' ? (
+        {view === 'store' ? (
+          <Store onBack={() => setView('public')} />
+        ) : view === 'gallery' ? (
           <Gallery images={galleryImages} />
         ) : (
           <>
@@ -182,9 +187,18 @@ const App: React.FC = () => {
                 onListenClick={() => setShowStreamingOverlay(true)}
                 hotEvent={hotEvent}
             />
-            <Banner data={bannerData} onScrollTo={scrollToSection} />
+            <Banner data={bannerData} onScrollTo={scrollToSection} onBuyTicketClick={(event) => {
+              setSelectedEventForModal(event);
+              scrollToSection('events');
+            }} />
             <Projects projects={projects} />
-            <Events events={events} onTicketPurchase={handleTicketPurchase} />
+            <Merch onShopClick={() => setView('store')} />
+            <Events
+              events={events}
+              onTicketPurchase={handleTicketPurchase}
+              selectedEvent={selectedEventForModal}
+              onCloseModal={() => setSelectedEventForModal(null)}
+            />
             <Booking onBookingSubmit={handleBookingSubmit} />
             <About data={aboutData} />
           </>

@@ -1,13 +1,26 @@
 import React from 'react';
 import { BannerData } from '../types';
-import { Calendar, Music, ArrowRight, MapPin } from 'lucide-react';
+import { Calendar, Music, ArrowRight, MapPin, PlayCircle } from 'lucide-react';
 
 interface BannerProps {
   data: BannerData;
   onScrollTo: (sectionId: string) => void;
+  onBuyTicketClick: (event: any) => void;
 }
 
-const Banner: React.FC<BannerProps> = ({ data, onScrollTo }) => {
+const Banner: React.FC<BannerProps> = ({ data, onScrollTo, onBuyTicketClick }) => {
+  // Create a mock event for the featured show
+  const featuredEvent = {
+    id: 'featured-ovroad',
+    title: 'OVROAD',
+    date: '2024-12-25',
+    time: '20:00',
+    venue: 'Kampala Arena',
+    city: 'Kampala',
+    price: 25,
+    status: 'Upcoming' as const,
+    image: '/show 6.jpg'
+  };
   return (
     <section className="relative -mt-32 z-10 px-6 md:px-12 pb-16">
       <div className="max-w-7xl mx-auto">
@@ -67,7 +80,7 @@ const Banner: React.FC<BannerProps> = ({ data, onScrollTo }) => {
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button
-                      onClick={() => onScrollTo('events')}
+                      onClick={() => onBuyTicketClick(featuredEvent)}
                       className="bg-gold-500 text-black font-bold uppercase py-4 px-8 rounded-lg hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 group"
                     >
                       Buy Tickets Now
@@ -133,7 +146,7 @@ const Banner: React.FC<BannerProps> = ({ data, onScrollTo }) => {
                       onClick={() => onScrollTo('projects')}
                       className="text-gold-500 hover:text-white transition-colors"
                     >
-                      <ArrowRight size={16} />
+                      <PlayCircle size={16} />
                     </button>
                   </div>
                 ))}

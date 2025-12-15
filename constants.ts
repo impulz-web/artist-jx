@@ -27,56 +27,7 @@ export const INITIAL_ABOUT_DATA: AboutData = {
   ]
 };
 
-export const MOCK_PROJECTS: Project[] = [
-  {
-    id: '1',
-    title: 'THIN BY Khim Swaqq',
-    type: 'Single',
-    description: 'Latest hit single from Khim Swaqq showcasing his unique sound.',
-    imageUrl: '/video1.jpg',
-    links: { youtube: 'https://www.youtube.com/watch?v=ZoiL3i4fsiw' }
-  },
-  {
-    id: '2',
-    title: 'Khim Swaqq - Cry Over Me',
-    type: 'Single',
-    description: 'Emotional ballad that showcases Khim Swaqq\'s versatility.',
-    imageUrl: '/video2.jpg',
-    links: { youtube: 'https://www.youtube.com/watch?v=zlvdfBIP53I' }
-  },
-  {
-    id: '3',
-    title: 'Khim Swaqq - Shutdown Ft Selekta T Mega',
-    type: 'Single',
-    description: 'Collaborative track featuring Selekta T Mega - pure fire!',
-    imageUrl: '/video3.jpg',
-    links: { youtube: 'https://www.youtube.com/watch?v=fGiEDxE99KU' }
-  },
-  {
-    id: '4',
-    title: 'Summer Time - Alexia and Khim Swaqq',
-    type: 'Single',
-    description: 'Summer anthem featuring Alexia - perfect for those sunny days.',
-    imageUrl: '/video4.jpg',
-    links: { youtube: 'https://www.youtube.com/watch?v=jntdDiUuWT0' }
-  },
-  {
-    id: '5',
-    title: 'MIDNIGHT TOKYO',
-    type: 'Album',
-    description: 'A sonic journey through the neon streets. Lo-fi beats meets trap soul.',
-    imageUrl: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=800&auto=format&fit=crop',
-    links: { spotify: '#', apple: '#' }
-  },
-  {
-    id: '6',
-    title: 'CONCRETE JUNGLE',
-    type: 'Video',
-    description: 'Visual masterpiece directed by K. Lewis. 1M+ views in 24 hours.',
-    imageUrl: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=800&auto=format&fit=crop',
-    links: { youtube: '#' }
-  }
-];
+// Removed MOCK_PROJECTS - no mock data needed
 
 export const INITIAL_EVENTS: Event[] = [
   {
@@ -167,7 +118,7 @@ export const INITIAL_GALLERY_IMAGES: GalleryImage[] = [
 
 export const INITIAL_BANNER_DATA: BannerData = {
   featuredEvents: INITIAL_EVENTS.filter(e => e.isHot || e.status === 'Upcoming').slice(0, 3),
-  newSongs: MOCK_PROJECTS.slice(0, 3),
+  newSongs: [],
   title: "Hottest Events & New Songs",
   subtitle: "Catch the latest drops and don't miss upcoming shows"
 };

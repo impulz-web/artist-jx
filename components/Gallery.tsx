@@ -17,8 +17,8 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
       <div className="container mx-auto px-6 md:px-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 animate-fade-in-up">
+          <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white uppercase tracking-tighter mb-4">
               Visual <span className="text-gold-500">Archives</span>
             </h1>
@@ -28,7 +28,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             {['All', 'Live', 'Studio', 'BTS', 'Lifestyle'].map((cat) => (
               <button
                 key={cat}
@@ -47,16 +47,17 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredImages.map((image) => (
-            <div 
-              key={image.id} 
-              className="group relative h-[400px] w-full overflow-hidden bg-neutral-900 cursor-pointer"
+          {filteredImages.map((image, index) => (
+            <div
+              key={image.id}
+              className="group relative h-[400px] w-full overflow-hidden bg-neutral-900 cursor-pointer animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
-              <img 
-                src={image.url} 
-                alt={image.caption} 
-                className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+              <img
+                src={image.url}
+                alt={image.caption}
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
               />
               
               {/* Overlay (Hidden by default, shows on hover) */}

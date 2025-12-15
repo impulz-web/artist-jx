@@ -6,18 +6,23 @@ import { MapPin, Clock, X, CheckCircle, Smartphone, Mail, User } from 'lucide-re
 interface EventsProps {
   events: Event[];
   onTicketPurchase: (ticket: Ticket) => void;
+  selectedEvent?: Event | null;
+  onCloseModal?: () => void;
 }
 
-const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
+const Events: React.FC<EventsProps> = ({ events, onTicketPurchase, selectedEvent: propSelectedEvent, onCloseModal }) => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success'>('idle');
-  
+
   // Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: ''
   });
+
+  // Use prop selectedEvent if provided, otherwise use internal state
+  const currentSelectedEvent = propSelectedEvent !== undefined ? propSelectedEvent : selectedEvent;
 
   const handleBuyClick = (event: Event) => {
     if (event.status !== 'Upcoming') return;
@@ -32,20 +37,20 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedEvent) return;
+    if (!currentSelectedEvent) return;
 
     // Create a "Reservation" Ticket
     const newTicket: Ticket = {
       id: Math.random().toString(36).substr(2, 9),
-      eventId: selectedEvent.id,
-      eventTitle: selectedEvent.title,
+      eventId: currentSelectedEvent.id,
+      eventTitle: currentSelectedEvent.title,
       customerName: formData.name,
       customerEmail: formData.email,
       customerPhone: formData.phone,
       secretCode: `RES-${Math.floor(1000 + Math.random() * 9000)}-PENDING`,
       purchaseDate: new Date().toISOString(),
       paymentMethod: 'Callback Request',
-      pricePaid: selectedEvent.price
+      pricePaid: currentSelectedEvent.price
     };
 
     // Simulate API call
@@ -57,6 +62,7 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
 
   const closeModal = () => {
     setSelectedEvent(null);
+    if (onCloseModal) onCloseModal();
   };
 
   return (
@@ -140,7 +146,7 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
       </div>
 
       {/* Premium Ticket Modal / Full Screen Overlay */}
-      {selectedEvent && (
+      {currentSelectedEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black animate-fade-in-up overflow-y-auto md:overflow-hidden">
           
           <button onClick={closeModal} className="absolute top-6 right-6 z-50 text-white/50 hover:text-white transition-colors bg-black/50 p-2 rounded-full">
@@ -153,9 +159,9 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
             <div className="w-full md:w-1/2 h-64 md:h-full relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-transparent to-transparent z-10"></div>
               <div className="absolute inset-0 bg-gold-500/10 z-10 mix-blend-overlay"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1200&auto=format&fit=crop" 
-                alt="Artist" 
+              <img
+                src="/booking.jpg"
+                alt="Artist"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
               />
               <div className="absolute bottom-0 left-0 p-8 md:p-16 z-20">
@@ -179,10 +185,10 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
                     
                     <div className="bg-neutral-900 border border-neutral-800 p-4 mb-8 flex justify-between items-center">
                         <div>
-                            <p className="text-white font-bold uppercase">{selectedEvent.title}</p>
-                            <p className="text-neutral-500 text-xs">{selectedEvent.date} • {selectedEvent.city}</p>
+                            <p className="text-white font-bold uppercase">{currentSelectedEvent.title}</p>
+                            <p className="text-neutral-500 text-xs">{currentSelectedEvent.date} • {currentSelectedEvent.city}</p>
                         </div>
-                        <p className="text-gold-500 font-bold text-xl">${selectedEvent.price}</p>
+                        <p className="text-gold-500 font-bold text-xl">${currentSelectedEvent.price}</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -245,7 +251,7 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
                     <h3 className="text-3xl font-display font-bold text-white uppercase mb-4">Request Received</h3>
                     <p className="text-neutral-400 mb-8 leading-relaxed">
                         Thank you, <span className="text-white font-bold">{formData.name}</span>.<br/>
-                        We have received your reservation request for <span className="text-white">{selectedEvent.title}</span>.
+                        We have received your reservation request for <span className="text-white">{currentSelectedEvent.title}</span>.
                         <br/><br/>
                         Our concierge team will call you at <span className="text-gold-500">{formData.phone}</span> within the next hour to finalize your payment and secure your tickets.
                     </p>
