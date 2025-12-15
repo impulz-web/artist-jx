@@ -14,7 +14,6 @@ interface DashboardProps {
   galleryImages: GalleryImage[];
   bannerData: BannerData;
 
-  onUpdateBookingStatus: (id: string, status: BookingRequest['status']) => void;
   onLogout: () => void;
 
   // Content Setters
@@ -29,10 +28,10 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({
     bookings, tickets, events, projects, heroImage, streamingLinks, aboutData, galleryImages, bannerData,
-    onUpdateBookingStatus, onLogout,
+    onLogout,
     setHeroImage, setStreamingLinks, setProjects, setEvents, setAboutData, setGalleryImages, setBannerData
 }) => {
-  const [activeTab, setActiveTab] = useState<'bookings' | 'sales' | 'content' | 'projects' | 'events' | 'gallery' | 'banner'>('bookings');
+  const [activeTab] = useState<'bookings' | 'sales' | 'content' | 'projects' | 'events' | 'gallery' | 'banner'>('bookings');
   
   // Project Form State
   const [editingProjectId, setEditingProjectId] = useState<string | null>(null);

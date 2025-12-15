@@ -9,18 +9,8 @@ interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = ({ data, onScrollTo, onBuyTicketClick }) => {
-  // Create a mock event for the featured show
-  const featuredEvent = {
-    id: 'featured-ovroad',
-    title: 'OVROAD',
-    date: '2024-12-25',
-    time: '20:00',
-    venue: 'Kampala Arena',
-    city: 'Kampala',
-    price: 25,
-    status: 'Upcoming' as const,
-    image: '/show 6.jpg'
-  };
+  // Get the featured OVROAD event from the events data
+  const featuredEvent = data.featuredEvents.find(event => event.title === 'OVROAD') || data.featuredEvents[0];
   return (
     <section className="relative -mt-32 z-10 px-6 md:px-12 pb-16">
       <div className="max-w-7xl mx-auto">

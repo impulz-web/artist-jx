@@ -31,37 +31,16 @@ export const INITIAL_ABOUT_DATA: AboutData = {
 
 export const INITIAL_EVENTS: Event[] = [
   {
-    id: 'e1',
-    title: 'NEON NIGHTS TOUR',
-    date: '2024-11-15',
+    id: 'featured-ovroad',
+    title: 'OVROAD',
+    date: '2024-12-25',
     time: '20:00',
-    venue: 'The Grand Arena',
-    city: 'Los Angeles, CA',
-    price: 45,
+    venue: 'Kampala Arena',
+    city: 'Kampala',
+    price: 25,
     status: 'Upcoming',
-    image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'e2',
-    title: 'UNDERGROUND SESSIONS',
-    date: '2024-12-02',
-    time: '22:00',
-    venue: 'Club Onyx',
-    city: 'New York, NY',
-    price: 30,
-    status: 'Upcoming',
-    image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'e3',
-    title: 'VANTAGE: UNPLUGGED',
-    date: '2024-12-20',
-    time: '19:30',
-    venue: 'Silver Lake Studio',
-    city: 'London, UK',
-    price: 75,
-    status: 'Sold Out',
-    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop'
+    image: '/show 6.jpg',
+    isHot: true
   }
 ];
 
