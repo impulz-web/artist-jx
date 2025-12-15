@@ -1,8 +1,8 @@
 
 import { Event, Project, StreamingLink, AboutData, GalleryImage } from './types';
 
-export const ARTIST_NAME = "VANTAGE";
-export const ARTIST_TAGLINE = "URBAN MUSICIAN | RECORDING ARTIST | PRODUCER";
+export const ARTIST_NAME = "KHIM SWAQ";
+export const ARTIST_TAGLINE = "South Sudan's Finest Dancehall Artist";
 
 export const INITIAL_HERO_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1920&auto=format&fit=crop";
 
@@ -17,7 +17,7 @@ export const INITIAL_ABOUT_DATA: AboutData = {
   imageUrl: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=800&auto=format&fit=crop",
   title: "The",
   highlightText: "Vision",
-  description1: `${ARTIST_NAME} is more than a name; it’s a movement. Born in the heart of the city, blending gritty lyricism with soulful melodies, ${ARTIST_NAME} creates a soundscape that mirrors the urban experience.`,
+  description1: `${ARTIST_NAME} is a South Sudanese Dancehall artist known for high-energy performances, authentic storytelling, and a bold sound that blends African rhythm with modern Dancehall culture. His music represents ambition, resilience, and the voice of a new generation.`,
   description2: "With over 10 million streams independently and sold-out shows across the coast, the mission remains the same: authenticity above all else.",
   stats: [
     { value: "2M+", label: "Monthly Listeners" },
