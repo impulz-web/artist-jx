@@ -53,7 +53,7 @@ export interface Ticket {
 
 export interface StreamingLink {
   id: string;
-  platform: 'Spotify' | 'Apple Music' | 'YouTube' | 'SoundCloud' | 'Tidal' | 'Other';
+  platform: 'Spotify' | 'Apple Music' | 'YouTube' | 'SoundCloud' | 'Tidal' | 'Instagram' | 'Facebook' | 'TikTok' | 'Other';
   url: string;
   label?: string;
 }
@@ -75,4 +75,11 @@ export interface GalleryImage {
   url: string;
   caption: string;
   category: 'Live' | 'Studio' | 'BTS' | 'Lifestyle';
+}
+
+export interface BannerData {
+  featuredEvents: Event[];
+  newSongs: Project[];
+  title: string;
+  subtitle: string;
 }

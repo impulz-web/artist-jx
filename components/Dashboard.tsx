@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { BookingRequest, Ticket, Event, Project, StreamingLink, AboutData, GalleryImage } from '../types';
-import { Check, X, LogOut, Image as ImageIcon, Link, Plus, Trash2, Edit2, FileText, Music, Flame, Camera } from 'lucide-react';
+import { BookingRequest, Ticket, Event, Project, StreamingLink, AboutData, GalleryImage, BannerData } from '../types';
+import { Check, X, LogOut, Image as ImageIcon, Link, Plus, Trash2, Edit2, FileText, Music, Flame, Camera, Calendar } from 'lucide-react';
 
 interface DashboardProps {
   bookings: BookingRequest[];
@@ -12,10 +12,11 @@ interface DashboardProps {
   streamingLinks: StreamingLink[];
   aboutData: AboutData;
   galleryImages: GalleryImage[];
-  
+  bannerData: BannerData;
+
   onUpdateBookingStatus: (id: string, status: BookingRequest['status']) => void;
   onLogout: () => void;
-  
+
   // Content Setters
   setHeroImage: (url: string) => void;
   setStreamingLinks: (links: StreamingLink[]) => void;
@@ -23,14 +24,15 @@ interface DashboardProps {
   setEvents: (events: Event[]) => void;
   setAboutData: (data: AboutData) => void;
   setGalleryImages: (images: GalleryImage[]) => void;
+  setBannerData: (data: BannerData) => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ 
-    bookings, tickets, events, projects, heroImage, streamingLinks, aboutData, galleryImages,
+const Dashboard: React.FC<DashboardProps> = ({
+    bookings, tickets, events, projects, heroImage, streamingLinks, aboutData, galleryImages, bannerData,
     onUpdateBookingStatus, onLogout,
-    setHeroImage, setStreamingLinks, setProjects, setEvents, setAboutData, setGalleryImages
+    setHeroImage, setStreamingLinks, setProjects, setEvents, setAboutData, setGalleryImages, setBannerData
 }) => {
-  const [activeTab, setActiveTab] = useState<'bookings' | 'sales' | 'content' | 'projects' | 'events' | 'gallery'>('bookings');
+  const [activeTab, setActiveTab] = useState<'bookings' | 'sales' | 'content' | 'projects' | 'events' | 'gallery' | 'banner'>('bookings');
   
   // Project Form State
   const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
@@ -41,7 +43,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   const [eventForm, setEventForm] = useState<Partial<Event>>({ title: '', date: '', time: '', venue: '', city: '', price: 0, status: 'Upcoming', isHot: false });
 
   // Link Form State
-  const [newLink, setNewLink] = useState({ platform: 'Spotify', url: '', label: '' });
+  const [newLink, setNewLink] = useState({ platform: 'Spotify' as StreamingLink['platform'], url: '', label: '' });
 
   // Gallery Form State
   const [newGalleryImage, setNewGalleryImage] = useState<Partial<GalleryImage>>({ url: '', caption: '', category: 'Live' });
@@ -52,8 +54,14 @@ const Dashboard: React.FC<DashboardProps> = ({
   // --- Handlers: Links ---
   const handleAddLink = () => {
     if(!newLink.url) return;
-    setStreamingLinks([...streamingLinks, { ...newLink, id: Math.random().toString(36).substr(2, 9) } as StreamingLink]);
-    setNewLink({ platform: 'Spotify', url: '', label: '' });
+    const newStreamingLink: StreamingLink = {
+      id: Math.random().toString(36).substr(2, 9),
+      platform: newLink.platform,
+      url: newLink.url,
+      label: newLink.label
+    };
+    setStreamingLinks([...streamingLinks, newStreamingLink]);
+    setNewLink({ platform: 'Spotify' as StreamingLink['platform'], url: '', label: '' });
   };
   const removeLink = (id: string) => setStreamingLinks(streamingLinks.filter(l => l.id !== id));
 
@@ -165,8 +173,8 @@ const Dashboard: React.FC<DashboardProps> = ({
         
         {/* Navigation Tabs */}
         <div className="flex flex-wrap gap-4 md:gap-8 border-b border-neutral-800 mb-8 overflow-x-auto">
-            {['bookings', 'sales', 'projects', 'events', 'gallery', 'content'].map((tab) => (
-                <button 
+            {['bookings', 'sales', 'projects', 'events', 'gallery', 'banner', 'content'].map((tab) => (
+                <button
                     key={tab}
                     onClick={() => setActiveTab(tab as any)}
                     className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${activeTab === tab ? 'text-gold-500 border-b-2 border-gold-500' : 'text-neutral-500 hover:text-white'}`}
@@ -449,6 +457,122 @@ const Dashboard: React.FC<DashboardProps> = ({
              </div>
         )}
 
+        {/* --- BANNER TAB --- */}
+        {activeTab === 'banner' && (
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left Col: Banner Content */}
+                <div className="space-y-8">
+                    {/* Banner Title & Subtitle */}
+                    <div className="bg-neutral-900 p-6 border border-neutral-800">
+                        <h3 className="text-white font-bold uppercase mb-4 flex items-center gap-2"><FileText size={16}/> Banner Content</h3>
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-xs uppercase text-neutral-500 block mb-1">Title</label>
+                                <input
+                                    value={bannerData.title}
+                                    onChange={(e) => setBannerData({...bannerData, title: e.target.value})}
+                                    className="w-full bg-black border border-neutral-700 p-3 text-white text-sm"
+                                />
+                            </div>
+                            <div>
+                                <label className="text-xs uppercase text-neutral-500 block mb-1">Subtitle</label>
+                                <textarea
+                                    value={bannerData.subtitle}
+                                    onChange={(e) => setBannerData({...bannerData, subtitle: e.target.value})}
+                                    className="w-full bg-black border border-neutral-700 p-3 text-white text-sm"
+                                    rows={2}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Featured Events */}
+                    <div className="bg-neutral-900 p-6 border border-neutral-800">
+                        <h3 className="text-white font-bold uppercase mb-4 flex items-center gap-2"><Calendar size={16}/> Featured Events</h3>
+                        <p className="text-neutral-400 text-sm mb-4">Select which events to display as "hottest" in the banner.</p>
+                        <div className="space-y-2 max-h-64 overflow-y-auto">
+                            {events.map(event => (
+                                <label key={event.id} className="flex items-center gap-3 p-2 hover:bg-neutral-800 rounded cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={bannerData.featuredEvents.some(e => e.id === event.id)}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setBannerData({
+                                                    ...bannerData,
+                                                    featuredEvents: [...bannerData.featuredEvents, event]
+                                                });
+                                            } else {
+                                                setBannerData({
+                                                    ...bannerData,
+                                                    featuredEvents: bannerData.featuredEvents.filter(ev => ev.id !== event.id)
+                                                });
+                                            }
+                                        }}
+                                        className="w-4 h-4 text-gold-500 bg-black border-neutral-700 rounded focus:ring-gold-500"
+                                    />
+                                    <div className="flex-1">
+                                        <span className="text-white text-sm font-bold">{event.title}</span>
+                                        <span className="text-neutral-400 text-xs block">{event.city} • {new Date(event.date).toLocaleDateString()}</span>
+                                    </div>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Col: New Songs */}
+                <div className="space-y-8">
+                    {/* New Songs */}
+                    <div className="bg-neutral-900 p-6 border border-neutral-800">
+                        <h3 className="text-white font-bold uppercase mb-4 flex items-center gap-2"><Music size={16}/> New Songs</h3>
+                        <p className="text-neutral-400 text-sm mb-4">Select which projects/songs to highlight as new releases.</p>
+                        <div className="space-y-2 max-h-64 overflow-y-auto">
+                            {projects.map(project => (
+                                <label key={project.id} className="flex items-center gap-3 p-2 hover:bg-neutral-800 rounded cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={bannerData.newSongs.some(p => p.id === project.id)}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setBannerData({
+                                                    ...bannerData,
+                                                    newSongs: [...bannerData.newSongs, project]
+                                                });
+                                            } else {
+                                                setBannerData({
+                                                    ...bannerData,
+                                                    newSongs: bannerData.newSongs.filter(p => p.id !== project.id)
+                                                });
+                                            }
+                                        }}
+                                        className="w-4 h-4 text-gold-500 bg-black border-neutral-700 rounded focus:ring-gold-500"
+                                    />
+                                    <div className="flex-1">
+                                        <span className="text-white text-sm font-bold">{project.title}</span>
+                                        <span className="text-neutral-400 text-xs block">{project.type}</span>
+                                    </div>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Preview */}
+                    <div className="bg-neutral-900 p-6 border border-neutral-800">
+                        <h3 className="text-white font-bold uppercase mb-4">Banner Preview</h3>
+                        <div className="bg-black/50 border border-neutral-700 rounded-lg p-4 text-center">
+                            <h4 className="text-gold-500 font-bold uppercase text-lg mb-2">{bannerData.title}</h4>
+                            <p className="text-neutral-400 text-sm mb-4">{bannerData.subtitle}</p>
+                            <div className="flex justify-center gap-4 text-xs">
+                                <span className="text-white">{bannerData.featuredEvents.length} Events</span>
+                                <span className="text-white">{bannerData.newSongs.length} Songs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        )}
+
         {/* --- SITE CONTENT TAB --- */}
         {activeTab === 'content' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -477,9 +601,9 @@ const Dashboard: React.FC<DashboardProps> = ({
                         <h3 className="text-white font-bold uppercase mb-4 flex items-center gap-2"><Link size={16}/> Listen Now Links</h3>
                         
                         <div className="flex gap-2 mb-4">
-                            <select 
-                                value={newLink.platform} 
-                                onChange={(e) => setNewLink({...newLink, platform: e.target.value})} 
+                            <select
+                                value={newLink.platform}
+                                onChange={(e) => setNewLink({...newLink, platform: e.target.value as StreamingLink['platform']})}
                                 className="bg-black border border-neutral-700 p-3 text-white text-sm"
                             >
                                 <option>Spotify</option><option>Apple Music</option><option>YouTube</option><option>SoundCloud</option><option>Tidal</option>

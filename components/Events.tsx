@@ -62,6 +62,30 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase }) => {
   return (
     <section id="events" className="py-24 bg-neutral-900">
       <div className="container mx-auto px-6 md:px-12">
+
+        {/* Show Posters Section */}
+        <div className="mb-20">
+          <div className="border-l-4 border-gold-500 pl-6 mb-8">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white uppercase">Past Shows</h2>
+            <p className="text-neutral-400 mt-2">Relive the moments that made the magic happen.</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {Array.from({ length: 5 }, (_, i) => (
+              <div key={i} className="aspect-square bg-neutral-800 rounded-lg overflow-hidden group cursor-pointer">
+                <img
+                  src={`/show ${i + 1}.jpg`}
+                  alt={`Show ${i + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="text-white font-bold uppercase text-sm">Show {i + 1}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="flex justify-between items-end mb-16">
           <div className="border-l-4 border-white pl-6">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase">Tour Dates</h2>

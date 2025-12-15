@@ -1,20 +1,21 @@
 
-import { Event, Project, StreamingLink, AboutData, GalleryImage } from './types';
+import { Event, Project, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
 
 export const ARTIST_NAME = "KHIM SWAQ";
 export const ARTIST_TAGLINE = "South Sudan's Finest Dancehall Artist";
 
-export const INITIAL_HERO_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1920&auto=format&fit=crop";
+export const INITIAL_HERO_IMAGE = "/hero.jpg";
 
 export const INITIAL_STREAMING_LINKS: StreamingLink[] = [
-  { id: '1', platform: 'Spotify', url: '#', label: 'Spotify' },
-  { id: '2', platform: 'Apple Music', url: '#', label: 'Apple Music' },
-  { id: '3', platform: 'YouTube', url: '#', label: 'YouTube' },
-  { id: '4', platform: 'SoundCloud', url: '#', label: 'SoundCloud' },
+  { id: '1', platform: 'Spotify', url: 'https://open.spotify.com/artist/16R05JMkj54CYNSRFrR73r?si=KLIfFPXhT0W2t_OgO7jpdw', label: 'Spotify' },
+  { id: '2', platform: 'Instagram', url: 'https://instagram.com/khim_swaqq', label: 'Instagram' },
+  { id: '3', platform: 'Facebook', url: 'https://facebook.com/khimswaqqmusic', label: 'Facebook' },
+  { id: '4', platform: 'TikTok', url: 'https://tiktok.com/@khimswaqqofficial', label: 'TikTok' },
+  { id: '5', platform: 'YouTube', url: 'https://www.youtube.com/@KhimSwaqq', label: 'YouTube' },
 ];
 
 export const INITIAL_ABOUT_DATA: AboutData = {
-  imageUrl: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=800&auto=format&fit=crop",
+  imageUrl: "/about.jpg",
   title: "The",
   highlightText: "Vision",
   description1: `${ARTIST_NAME} is a South Sudanese Dancehall artist known for high-energy performances, authentic storytelling, and a bold sound that blends African rhythm with modern Dancehall culture. His music represents ambition, resilience, and the voice of a new generation.`,
@@ -29,6 +30,38 @@ export const INITIAL_ABOUT_DATA: AboutData = {
 export const MOCK_PROJECTS: Project[] = [
   {
     id: '1',
+    title: 'THIN BY Khim Swaqq',
+    type: 'Single',
+    description: 'Latest hit single from Khim Swaqq showcasing his unique sound.',
+    imageUrl: '/video1.jpg',
+    links: { youtube: 'https://www.youtube.com/watch?v=ZoiL3i4fsiw' }
+  },
+  {
+    id: '2',
+    title: 'Khim Swaqq - Cry Over Me',
+    type: 'Single',
+    description: 'Emotional ballad that showcases Khim Swaqq\'s versatility.',
+    imageUrl: '/video2.jpg',
+    links: { youtube: 'https://www.youtube.com/watch?v=zlvdfBIP53I' }
+  },
+  {
+    id: '3',
+    title: 'Khim Swaqq - Shutdown Ft Selekta T Mega',
+    type: 'Single',
+    description: 'Collaborative track featuring Selekta T Mega - pure fire!',
+    imageUrl: '/video3.jpg',
+    links: { youtube: 'https://www.youtube.com/watch?v=fGiEDxE99KU' }
+  },
+  {
+    id: '4',
+    title: 'Summer Time - Alexia and Khim Swaqq',
+    type: 'Single',
+    description: 'Summer anthem featuring Alexia - perfect for those sunny days.',
+    imageUrl: '/video4.jpg',
+    links: { youtube: 'https://www.youtube.com/watch?v=jntdDiUuWT0' }
+  },
+  {
+    id: '5',
     title: 'MIDNIGHT TOKYO',
     type: 'Album',
     description: 'A sonic journey through the neon streets. Lo-fi beats meets trap soul.',
@@ -36,28 +69,12 @@ export const MOCK_PROJECTS: Project[] = [
     links: { spotify: '#', apple: '#' }
   },
   {
-    id: '2',
+    id: '6',
     title: 'CONCRETE JUNGLE',
     type: 'Video',
     description: 'Visual masterpiece directed by K. Lewis. 1M+ views in 24 hours.',
     imageUrl: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=800&auto=format&fit=crop',
     links: { youtube: '#' }
-  },
-  {
-    id: '3',
-    title: 'ECHOES ft. LUNA',
-    type: 'Single',
-    description: 'The summer anthem featuring R&B sensation Luna.',
-    imageUrl: 'https://images.unsplash.com/photo-1514525253440-b393452e3383?q=80&w=800&auto=format&fit=crop',
-    links: { spotify: '#', youtube: '#' }
-  },
-  {
-    id: '4',
-    title: 'NO SIGNAL',
-    type: 'Single',
-    description: 'Hard-hitting bass and introspective lyrics.',
-    imageUrl: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1?q=80&w=800&auto=format&fit=crop',
-    links: { apple: '#' }
   }
 ];
 
@@ -100,38 +117,57 @@ export const INITIAL_EVENTS: Event[] = [
 export const INITIAL_GALLERY_IMAGES: GalleryImage[] = [
   {
     id: 'g1',
-    url: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1?q=80&w=1200',
+    url: '/1.jpg',
     caption: 'Studio Session Vol. 1',
     category: 'Studio'
   },
   {
     id: 'g2',
-    url: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=1200',
+    url: '/2.jpg',
     caption: 'Neon Nights Tour Opening',
     category: 'Live'
   },
   {
     id: 'g3',
-    url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200',
+    url: '/3.jpg',
     caption: 'Backstage at The Grand',
     category: 'BTS'
   },
   {
     id: 'g4',
-    url: 'https://images.unsplash.com/photo-1514525253440-b393452e3383?q=80&w=1200',
+    url: '/5.jpg',
     caption: 'Midnight Vibes',
     category: 'Lifestyle'
   },
   {
     id: 'g5',
-    url: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1200',
+    url: '/7.jpg',
     caption: 'On Set: Concrete Jungle',
     category: 'BTS'
   },
   {
     id: 'g6',
-    url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200',
+    url: '/8.jpg',
     caption: 'Crowd Energy',
+    category: 'Live'
+  },
+  {
+    id: 'g7',
+    url: '/9.jpg',
+    caption: 'Behind the Scenes',
+    category: 'Studio'
+  },
+  {
+    id: 'g8',
+    url: '/11.jpg',
+    caption: 'Live Performance',
     category: 'Live'
   }
 ];
+
+export const INITIAL_BANNER_DATA: BannerData = {
+  featuredEvents: INITIAL_EVENTS.filter(e => e.isHot || e.status === 'Upcoming').slice(0, 3),
+  newSongs: MOCK_PROJECTS.slice(0, 3),
+  title: "Hottest Events & New Songs",
+  subtitle: "Catch the latest drops and don't miss upcoming shows"
+};

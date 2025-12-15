@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { Event, BookingRequest, Ticket, Project, StreamingLink, AboutData, GalleryImage } from './types';
-import { INITIAL_EVENTS, MOCK_PROJECTS, INITIAL_HERO_IMAGE, INITIAL_STREAMING_LINKS, INITIAL_ABOUT_DATA, INITIAL_GALLERY_IMAGES } from './constants';
+import { Event, BookingRequest, Ticket, Project, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
+import { INITIAL_EVENTS, MOCK_PROJECTS, INITIAL_HERO_IMAGE, INITIAL_STREAMING_LINKS, INITIAL_ABOUT_DATA, INITIAL_GALLERY_IMAGES, INITIAL_BANNER_DATA, ARTIST_NAME } from './constants';
 import Hero from './components/Hero';
+import Banner from './components/Banner';
 import Projects from './components/Projects';
 import Events from './components/Events';
 import Booking from './components/Booking';
@@ -27,6 +28,7 @@ const App: React.FC = () => {
   const [streamingLinks, setStreamingLinks] = useState<StreamingLink[]>(INITIAL_STREAMING_LINKS);
   const [aboutData, setAboutData] = useState<AboutData>(INITIAL_ABOUT_DATA);
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(INITIAL_GALLERY_IMAGES);
+  const [bannerData, setBannerData] = useState<BannerData>(INITIAL_BANNER_DATA);
   
   // --- CRM STATE ---
   const [bookings, setBookings] = useState<BookingRequest[]>([]);
@@ -76,7 +78,7 @@ const App: React.FC = () => {
 
   if (view === 'dashboard') {
     return (
-        <Dashboard 
+        <Dashboard
             bookings={bookings}
             tickets={tickets}
             events={events}
@@ -85,6 +87,7 @@ const App: React.FC = () => {
             streamingLinks={streamingLinks}
             aboutData={aboutData}
             galleryImages={galleryImages}
+            bannerData={bannerData}
             onUpdateBookingStatus={updateBookingStatus}
             onLogout={() => setView('public')}
             setHeroImage={setHeroImage}
@@ -93,6 +96,7 @@ const App: React.FC = () => {
             setEvents={setEvents}
             setAboutData={setAboutData}
             setGalleryImages={setGalleryImages}
+            setBannerData={setBannerData}
         />
     );
   }
@@ -103,11 +107,11 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-            <div 
-              className="text-2xl font-display font-bold uppercase tracking-tighter cursor-pointer hover:text-gold-500 transition-colors" 
+            <div
+              className="text-2xl font-display font-bold uppercase tracking-tighter cursor-pointer hover:text-gold-500 transition-colors"
               onClick={() => { setView('public'); window.scrollTo(0,0); }}
             >
-                Vantage
+                {ARTIST_NAME}
             </div>
 
             {/* Desktop Menu */}
@@ -172,12 +176,13 @@ const App: React.FC = () => {
           <Gallery images={galleryImages} />
         ) : (
           <>
-            <Hero 
-                heroImage={heroImage} 
-                onScrollTo={scrollToSection} 
+            <Hero
+                heroImage={heroImage}
+                onScrollTo={scrollToSection}
                 onListenClick={() => setShowStreamingOverlay(true)}
                 hotEvent={hotEvent}
             />
+            <Banner data={bannerData} onScrollTo={scrollToSection} />
             <Projects projects={projects} />
             <Events events={events} onTicketPurchase={handleTicketPurchase} />
             <Booking onBookingSubmit={handleBookingSubmit} />

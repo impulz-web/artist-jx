@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Play, Calendar, Music, Flame, Ticket, ArrowRight } from 'lucide-react';
+import { Play, Calendar, Music, Flame, ArrowRight } from 'lucide-react';
 import { ARTIST_NAME, ARTIST_TAGLINE } from '../constants';
 import { Event } from '../types';
 
@@ -21,8 +21,8 @@ const Hero: React.FC<HeroProps> = ({ heroImage, onScrollTo, onListenClick, hotEv
           alt="Artist Background" 
           className="w-full h-full object-cover transition-opacity duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
       {/* Content */}
