@@ -26,6 +26,14 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase, selectedEvent
 
   const handleBuyClick = (event: Event) => {
     if (event.status !== 'Upcoming') return;
+
+    // If we have an external selectedEvent prop (from banner), use that mechanism
+    if (selectedEvent !== undefined) {
+      // This means the parent is controlling the modal, so we don't set internal state
+      return;
+    }
+
+    // Otherwise, handle internally
     setSelectedEvent(event);
     setSubmissionStatus('idle');
     setFormData({ name: '', email: '', phone: '' });

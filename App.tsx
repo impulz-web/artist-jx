@@ -196,8 +196,10 @@ const App: React.FC = () => {
             <Events
               events={events}
               onTicketPurchase={handleTicketPurchase}
-              selectedEvent={selectedEventForModal}
-              onCloseModal={() => setSelectedEventForModal(null)}
+              {...(selectedEventForModal ? {
+                selectedEvent: selectedEventForModal,
+                onCloseModal: () => setSelectedEventForModal(null)
+              } : {})}
             />
             <Booking onBookingSubmit={handleBookingSubmit} />
             <About data={aboutData} />
