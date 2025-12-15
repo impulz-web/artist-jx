@@ -1,5 +1,5 @@
 
-import { Event, Project, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
+import { Event, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
 
 export const ARTIST_NAME = "KHIM SWAQ";
 export const ARTIST_TAGLINE = "South Sudan's Finest Dancehall Artist";

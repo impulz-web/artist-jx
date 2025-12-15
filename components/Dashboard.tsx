@@ -173,15 +173,76 @@ const Dashboard: React.FC<DashboardProps> = ({
         
         {/* Navigation Tabs */}
         <div className="flex flex-wrap gap-4 md:gap-8 border-b border-neutral-800 mb-8 overflow-x-auto">
-            {['bookings', 'sales', 'projects', 'events', 'gallery', 'banner', 'content'].map((tab) => (
-                <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab as any)}
-                    className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${activeTab === tab ? 'text-gold-500 border-b-2 border-gold-500' : 'text-neutral-500 hover:text-white'}`}
-                >
-                    {tab === 'content' ? 'Site Content' : tab === 'projects' ? 'Latest Drops' : tab === 'events' ? 'Tour Dates' : tab}
-                </button>
-            ))}
+            <button
+                onClick={() => setActiveTab('bookings')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'bookings'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Bookings
+            </button>
+            <button
+                onClick={() => setActiveTab('sales')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'sales'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Sales
+            </button>
+            <button
+                onClick={() => setActiveTab('projects')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'projects'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Latest Drops
+            </button>
+            <button
+                onClick={() => setActiveTab('events')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'events'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Tour Dates
+            </button>
+            <button
+                onClick={() => setActiveTab('gallery')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'gallery'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Gallery
+            </button>
+            <button
+                onClick={() => setActiveTab('banner')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'banner'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Banner
+            </button>
+            <button
+                onClick={() => setActiveTab('content')}
+                className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap ${
+                    activeTab === 'content'
+                        ? 'text-gold-500 border-b-2 border-gold-500'
+                        : 'text-neutral-500 hover:text-white'
+                }`}
+            >
+                Site Content
+            </button>
         </div>
 
         {/* --- BOOKINGS TAB --- */}
