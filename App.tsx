@@ -79,26 +79,18 @@ const App: React.FC = () => {
 
   if (view === 'dashboard') {
     return (
-        <Dashboard
-            bookings={bookings}
-            tickets={tickets}
-            events={events}
-            projects={projects}
-            heroImage={heroImage}
-            streamingLinks={streamingLinks}
-            aboutData={aboutData}
-            galleryImages={galleryImages}
-            bannerData={bannerData}
-
-            onLogout={() => setView('public')}
-            setHeroImage={setHeroImage}
-            setStreamingLinks={setStreamingLinks}
-            setProjects={setProjects}
-            setEvents={setEvents}
-            setAboutData={setAboutData}
-            setGalleryImages={setGalleryImages}
-            setBannerData={setBannerData}
-        />
+      <div className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Dashboard Temporarily Disabled</h1>
+          <p className="text-neutral-400">Dashboard features will be re-enabled after deployment.</p>
+          <button
+            onClick={() => setView('public')}
+            className="mt-4 bg-gold-500 text-black px-6 py-2 font-bold uppercase"
+          >
+            Return to Site
+          </button>
+        </div>
+      </div>
     );
   }
 
