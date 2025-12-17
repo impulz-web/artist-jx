@@ -10,7 +10,6 @@ import Events from './components/Events';
 import Booking from './components/Booking';
 import About from './components/About';
 import Footer from './components/Footer';
-import Dashboard from './components/Dashboard';
 import StreamingOverlay from './components/StreamingOverlay';
 import Gallery from './components/Gallery';
 import Store from './components/Store';
@@ -25,18 +24,14 @@ const App: React.FC = () => {
   const [selectedEventForModal, setSelectedEventForModal] = useState<any>(null);
 
   // --- CONTENT STATE (Managed by Dashboard) ---
-  const [events, setEvents] = useState<Event[]>(INITIAL_EVENTS);
-  const [projects, setProjects] = useState<Project[]>(INITIAL_PROJECTS);
-  const [heroImage, setHeroImage] = useState<string>(INITIAL_HERO_IMAGE);
-  const [streamingLinks, setStreamingLinks] = useState<StreamingLink[]>(INITIAL_STREAMING_LINKS);
-  const [aboutData, setAboutData] = useState<AboutData>(INITIAL_ABOUT_DATA);
-  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(INITIAL_GALLERY_IMAGES);
-  const [bannerData, setBannerData] = useState<BannerData>(INITIAL_BANNER_DATA);
+  const [events] = useState<Event[]>(INITIAL_EVENTS);
+  const [projects] = useState<Project[]>(INITIAL_PROJECTS);
+  const [heroImage] = useState<string>(INITIAL_HERO_IMAGE);
+  const [streamingLinks] = useState<StreamingLink[]>(INITIAL_STREAMING_LINKS);
+  const [aboutData] = useState<AboutData>(INITIAL_ABOUT_DATA);
+  const [galleryImages] = useState<GalleryImage[]>(INITIAL_GALLERY_IMAGES);
+  const [bannerData] = useState<BannerData>(INITIAL_BANNER_DATA);
   
-  // --- CRM STATE ---
-  const [bookings, setBookings] = useState<BookingRequest[]>([]);
-  const [tickets, setTickets] = useState<Ticket[]>([]);
-
   // Find Hot Event
   const hotEvent = events.find(e => e.isHot);
 
@@ -57,11 +52,11 @@ const App: React.FC = () => {
   };
 
   const handleTicketPurchase = (ticket: Ticket) => {
-    setTickets(prev => [...prev, ticket]);
+    // Temporarily disabled - dashboard features will be re-enabled after deployment
   };
 
   const handleBookingSubmit = (booking: BookingRequest) => {
-    setBookings(prev => [booking, ...prev]);
+    // Temporarily disabled - dashboard features will be re-enabled after deployment
   };
 
 
