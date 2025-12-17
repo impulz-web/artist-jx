@@ -123,8 +123,8 @@ const Dashboard: React.FC<DashboardProps> = ({
     } else {
       // Create
       const event: Event = {
-          id: Math.random().toString(36).substr(2, 9),
           ...eventForm as Event,
+          id: Math.random().toString(36).substr(2, 9),
           isHot: false // Default to false
       };
       setEvents([...events, event]);
@@ -521,6 +521,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                             {events.map(event => (
                                 <label key={event.id} className="flex items-center gap-3 p-2 hover:bg-neutral-800 rounded cursor-pointer">
                                     <input
+                                        id={`featured-event-${event.id}`}
                                         type="checkbox"
                                         checked={bannerData.featuredEvents.some(e => e.id === event.id)}
                                         onChange={(e) => {
