@@ -24,9 +24,10 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {projects.map((project) => (
               <div key={project.id} className="group relative h-[400px] overflow-hidden bg-neutral-900 cursor-pointer">
-                <img 
-                  src={project.imageUrl} 
-                  alt={project.title} 
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                 />
                 

@@ -6,10 +6,24 @@ export default defineConfig({
   plugins: [react()],
   build: {
     sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
     },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['lucide-react'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'lucide-react'],
   },
 });
