@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Project } from '../types';
-import { ExternalLink, PlayCircle } from 'lucide-react';
+import { PlayCircle } from 'lucide-react';
 
 interface ProjectsProps {
   projects: Project[];
@@ -52,7 +52,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
                     )}
                     {project.links.youtube && (
                       <a href={project.links.youtube} target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-500 transition-colors">
-                        <ExternalLink size={24} />
+                        <PlayCircle size={24} />
                       </a>
                     )}
                   </div>

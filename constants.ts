@@ -1,5 +1,5 @@
 
-import { Event, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
+import { Event, Project, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
 
 export const ARTIST_NAME = "KHIM SWAQ";
 export const ARTIST_TAGLINE = "South Sudan's Finest Dancehall Artist";
@@ -27,7 +27,48 @@ export const INITIAL_ABOUT_DATA: AboutData = {
   ]
 };
 
-// Removed MOCK_PROJECTS - no mock data needed
+export const INITIAL_PROJECTS: Project[] = [
+  {
+    id: 'video1',
+    title: 'Chol by Khim Swaqq',
+    type: 'Video',
+    description: '',
+    imageUrl: '/video 1.jpg',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=K_yxzzMigA8'
+    }
+  },
+  {
+    id: 'video2',
+    title: 'Thin by Khim Swaqq',
+    type: 'Video',
+    description: '',
+    imageUrl: '/video 2.jpg',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=ZoiL3i4fsiw'
+    }
+  },
+  {
+    id: 'video3',
+    title: 'Khim Swaqq - Cry Over Me',
+    type: 'Video',
+    description: '',
+    imageUrl: '/video 3.jpg',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=zlvdfBIP53I'
+    }
+  },
+  {
+    id: 'video4',
+    title: 'Khim Swaqq - Shutdown Ft Selekta T Mega',
+    type: 'Video',
+    description: '',
+    imageUrl: '/video 4.jpg',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=fGiEDxE99KU'
+    }
+  }
+];
 
 export const INITIAL_EVENTS: Event[] = [
   {
@@ -97,7 +138,7 @@ export const INITIAL_GALLERY_IMAGES: GalleryImage[] = [
 
 export const INITIAL_BANNER_DATA: BannerData = {
   featuredEvents: INITIAL_EVENTS.filter(e => e.isHot || e.status === 'Upcoming').slice(0, 3),
-  newSongs: [],
+  newSongs: INITIAL_PROJECTS,
   title: "Hottest Events & New Songs",
   subtitle: "Catch the latest drops and don't miss upcoming shows"
 };

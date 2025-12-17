@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Event, BookingRequest, Ticket, Project, StreamingLink, AboutData, GalleryImage, BannerData } from './types';
-import { INITIAL_EVENTS, INITIAL_HERO_IMAGE, INITIAL_STREAMING_LINKS, INITIAL_ABOUT_DATA, INITIAL_GALLERY_IMAGES, INITIAL_BANNER_DATA, ARTIST_NAME } from './constants';
+import { INITIAL_EVENTS, INITIAL_PROJECTS, INITIAL_HERO_IMAGE, INITIAL_STREAMING_LINKS, INITIAL_ABOUT_DATA, INITIAL_GALLERY_IMAGES, INITIAL_BANNER_DATA, ARTIST_NAME } from './constants';
 import Hero from './components/Hero';
 import Banner from './components/Banner';
 import Projects from './components/Projects';
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   // --- CONTENT STATE (Managed by Dashboard) ---
   const [events, setEvents] = useState<Event[]>(INITIAL_EVENTS);
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(INITIAL_PROJECTS);
   const [heroImage, setHeroImage] = useState<string>(INITIAL_HERO_IMAGE);
   const [streamingLinks, setStreamingLinks] = useState<StreamingLink[]>(INITIAL_STREAMING_LINKS);
   const [aboutData, setAboutData] = useState<AboutData>(INITIAL_ABOUT_DATA);
@@ -64,9 +64,7 @@ const App: React.FC = () => {
     setBookings(prev => [booking, ...prev]);
   };
 
-  const updateBookingStatus = (id: string, status: BookingRequest['status']) => {
-    setBookings(prev => prev.map(b => b.id === id ? { ...b, status } : b));
-  };
+
 
   // Scroll listener for Navbar transparency
   useEffect(() => {
@@ -91,7 +89,7 @@ const App: React.FC = () => {
             aboutData={aboutData}
             galleryImages={galleryImages}
             bannerData={bannerData}
-            onUpdateBookingStatus={updateBookingStatus}
+
             onLogout={() => setView('public')}
             setHeroImage={setHeroImage}
             setStreamingLinks={setStreamingLinks}
