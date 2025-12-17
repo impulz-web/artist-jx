@@ -28,7 +28,7 @@ const Events: React.FC<EventsProps> = ({ events, onTicketPurchase, selectedEvent
     if (event.status !== 'Upcoming') return;
 
     // If we have an external selectedEvent prop (from banner), use that mechanism
-    if (selectedEvent !== undefined) {
+    if (propSelectedEvent !== undefined || onCloseModal) {
       // This means the parent is controlling the modal, so we don't set internal state
       return;
     }
