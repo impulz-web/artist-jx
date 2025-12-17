@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Play, Calendar, Music, Flame, ArrowRight } from 'lucide-react';
+import { Play, Calendar, Music } from 'lucide-react';
 import { ARTIST_NAME, ARTIST_TAGLINE } from '../constants';
 import { Event } from '../types';
 
@@ -61,38 +61,7 @@ const Hero: React.FC<HeroProps> = ({ heroImage, onScrollTo, onListenClick, hotEv
         </div>
       </div>
 
-      {/* HOT EVENT ADVERT (Premium Section) */}
-      {hotEvent && (
-        <div className="absolute bottom-0 right-0 md:bottom-12 md:right-12 z-20 w-full md:w-96 animate-fade-in-up">
-           <div className="bg-black/60 backdrop-blur-xl border-t-4 border-gold-500 p-6 shadow-2xl relative overflow-hidden group">
-              {/* Animated Glow effect */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gold-500/20 blur-[50px] rounded-full group-hover:bg-gold-500/30 transition-all duration-500"></div>
-              
-              <div className="flex justify-between items-start mb-4 relative z-10">
-                  <div className="flex items-center gap-2 text-gold-500 font-bold uppercase tracking-widest text-xs animate-pulse">
-                      <Flame size={14} fill="currentColor" /> Trending Event
-                  </div>
-                  <span className="text-white/50 text-xs uppercase font-bold">{new Date(hotEvent.date).toLocaleDateString()}</span>
-              </div>
 
-              <h3 className="text-2xl font-display font-bold text-white uppercase leading-none mb-1">{hotEvent.title}</h3>
-              <p className="text-neutral-400 text-sm mb-4 uppercase tracking-wider">{hotEvent.city} • {hotEvent.venue}</p>
-
-              <div className="flex items-center justify-between mt-6">
-                 <div>
-                    <span className="block text-xs text-neutral-500 uppercase">Tickets Starting</span>
-                    <span className="text-xl font-bold text-white">${hotEvent.price}</span>
-                 </div>
-                 <button 
-                    onClick={() => onScrollTo('events')}
-                    className="flex items-center gap-2 bg-gold-500 text-black px-6 py-3 uppercase font-bold text-sm tracking-wider hover:bg-white transition-colors"
-                 >
-                    Get Tickets <ArrowRight size={16} />
-                 </button>
-              </div>
-           </div>
-        </div>
-      )}
 
       {/* Scroll Indicator */}
       {!hotEvent && (
