@@ -56,7 +56,7 @@ const Booking: React.FC<BookingProps> = ({ onBookingSubmit }) => {
             <div className="space-y-4">
                <div className="border-t border-neutral-800 pt-4">
                   <p className="text-xs uppercase tracking-widest text-neutral-500 mb-1">Management</p>
-                  <p className="text-white font-bold text-xl">mgmt@vantage-music.com</p>
+                  <p className="text-white font-bold text-xl">mgmt@vantage-music</p>
                </div>
                <div className="border-t border-neutral-800 pt-4">
                   <p className="text-xs uppercase tracking-widest text-neutral-500 mb-1">Press Inquiries</p>

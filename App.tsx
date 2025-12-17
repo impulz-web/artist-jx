@@ -51,11 +51,11 @@ const App: React.FC = () => {
     setMobileMenuOpen(false);
   };
 
-  const handleTicketPurchase = (ticket: Ticket) => {
+  const handleTicketPurchase = (_ticket: Ticket) => {
     // Temporarily disabled - dashboard features will be re-enabled after deployment
   };
 
-  const handleBookingSubmit = (booking: BookingRequest) => {
+  const handleBookingSubmit = (_booking: BookingRequest) => {
     // Temporarily disabled - dashboard features will be re-enabled after deployment
   };
 
