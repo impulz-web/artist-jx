@@ -72,12 +72,12 @@ export const INITIAL_PROJECTS: Project[] = [
 
 export const INITIAL_EVENTS: Event[] = [
   {
-    id: 'featured-jam-session',
-    title: 'JAM SESSION',
+    id: 'featured-rhythm-night',
+    title: 'RHYTHM NIGHT',
     date: '2024-12-25',
     time: '20:00',
-    venue: 'Nairobi Convention Centre',
-    city: 'Nairobi',
+    venue: 'Nakuru Amphitheatre',
+    city: 'Nakuru',
     price: 25,
     status: 'Upcoming',
     image: '/show 6.jpg',
