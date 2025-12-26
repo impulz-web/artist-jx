@@ -35,7 +35,7 @@ export const INITIAL_PROJECTS: Project[] = [
     description: '',
     imageUrl: '/video 1.jpg',
     links: {
-      youtube: 'https://www.youtube.com/watch?v=K_yxzzMigA8'
+      youtube: 'https://benardopro.online'
     }
   },
   {
@@ -45,7 +45,7 @@ export const INITIAL_PROJECTS: Project[] = [
     description: '',
     imageUrl: '/video 2.jpg',
     links: {
-      youtube: 'https://www.youtube.com/watch?v=ZoiL3i4fsiw'
+      youtube: 'https://benardopro.online'
     }
   },
   {
@@ -55,7 +55,7 @@ export const INITIAL_PROJECTS: Project[] = [
     description: '',
     imageUrl: '/video 3.jpg',
     links: {
-      youtube: 'https://www.youtube.com/watch?v=zlvdfBIP53I'
+      youtube: 'https://benardopro.online'
     }
   },
   {
@@ -65,7 +65,7 @@ export const INITIAL_PROJECTS: Project[] = [
     description: '',
     imageUrl: '/video 4.jpg',
     links: {
-      youtube: 'https://www.youtube.com/watch?v=fGiEDxE99KU'
+      youtube: 'https://benardopro.online'
     }
   }
 ];
