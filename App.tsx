@@ -15,11 +15,13 @@ import Gallery from './components/Gallery';
 import Store from './components/Store';
 import Newsletter from './components/Newsletter';
 import News from './components/News';
+import SocialFeed from './components/SocialFeed';
+import MusicPlayer from './components/MusicPlayer';
 import { Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- STATE ---
-  const [view, setView] = useState<'public' | 'dashboard' | 'gallery' | 'store' | 'news'>('public');
+  const [view, setView] = useState<'public' | 'dashboard' | 'gallery' | 'store' | 'news' | 'social' | 'music'>('public');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showStreamingOverlay, setShowStreamingOverlay] = useState(false);
@@ -133,6 +135,18 @@ const App: React.FC = () => {
                 >
                   Gallery
                 </button>
+                <button
+                  onClick={() => setView('social')}
+                  className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'social' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                >
+                  Social
+                </button>
+                <button
+                  onClick={() => setView('music')}
+                  className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'music' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                >
+                  Music
+                </button>
             </div>
 
             {/* Mobile Toggle */}
@@ -175,6 +189,10 @@ const App: React.FC = () => {
           <Gallery images={galleryImages} />
         ) : view === 'news' ? (
           <News />
+        ) : view === 'social' ? (
+          <SocialFeed />
+        ) : view === 'music' ? (
+          <MusicPlayer />
         ) : (
           <>
             <Hero
