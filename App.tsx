@@ -252,17 +252,17 @@ const App: React.FC = () => {
                 {ARTIST_NAME}
             </div>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8">
-                <button 
+            {/* Desktop Menu - Responsive Layout */}
+            <div className="hidden lg:flex gap-6 xl:gap-8">
+                <button
                   onClick={() => { setView('public'); window.scrollTo(0,0); }}
                   className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'public' ? 'text-white' : 'text-neutral-500 hover:text-white'}`}
                 >
                   Home
                 </button>
-                {['Projects', 'Events', 'Bookings', 'About'].map((item) => (
-                    <button 
-                        key={item} 
+                {['Projects', 'Events', 'About'].map((item) => (
+                    <button
+                        key={item}
                         onClick={() => scrollToSection(item.toLowerCase())}
                         className="text-sm uppercase font-bold tracking-widest text-neutral-400 hover:text-white hover:text-gold-500 transition-colors"
                     >
@@ -270,10 +270,22 @@ const App: React.FC = () => {
                     </button>
                 ))}
                 <button
+                  onClick={() => scrollToSection('bookings')}
+                  className="text-sm uppercase font-bold tracking-widest text-neutral-400 hover:text-white hover:text-gold-500 transition-colors"
+                >
+                  Book
+                </button>
+                <button
                   onClick={() => setView('news')}
                   className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'news' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
                 >
                   News
+                </button>
+                <button
+                  onClick={() => setView('music')}
+                  className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'music' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                >
+                  Music
                 </button>
                 <button
                   onClick={() => setView('gallery')}
@@ -281,17 +293,36 @@ const App: React.FC = () => {
                 >
                   Gallery
                 </button>
+            </div>
+
+            {/* Tablet Menu - Condensed */}
+            <div className="hidden md:flex lg:hidden gap-4">
                 <button
-                  onClick={() => setView('social')}
-                  className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'social' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                  onClick={() => { setView('public'); window.scrollTo(0,0); }}
+                  className={`text-xs uppercase font-bold tracking-wider transition-colors ${view === 'public' ? 'text-white' : 'text-neutral-500 hover:text-white'}`}
                 >
-                  Social
+                  Home
                 </button>
+                {['Projects', 'Events'].map((item) => (
+                    <button
+                        key={item}
+                        onClick={() => scrollToSection(item.toLowerCase())}
+                        className="text-xs uppercase font-bold tracking-wider text-neutral-400 hover:text-white hover:text-gold-500 transition-colors"
+                    >
+                        {item}
+                    </button>
+                ))}
                 <button
                   onClick={() => setView('music')}
-                  className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'music' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                  className={`text-xs uppercase font-bold tracking-wider transition-colors ${view === 'music' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
                 >
                   Music
+                </button>
+                <button
+                  onClick={() => setView('gallery')}
+                  className={`text-xs uppercase font-bold tracking-wider transition-colors ${view === 'gallery' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                >
+                  Gallery
                 </button>
             </div>
 
