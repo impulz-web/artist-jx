@@ -78,16 +78,162 @@ const App: React.FC = () => {
 
   if (view === 'dashboard') {
     return (
-      <div className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Dashboard Temporarily Disabled</h1>
-          <p className="text-neutral-400">Dashboard features will be re-enabled after deployment.</p>
-          <button
-            onClick={() => setView('public')}
-            className="mt-4 bg-gold-500 text-black px-6 py-2 font-bold uppercase"
-          >
-            Return to Site
-          </button>
+      <div className="min-h-screen bg-neutral-950 text-white">
+        {/* Admin Header */}
+        <nav className="bg-black border-b border-neutral-800 px-6 py-4">
+          <div className="container mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-gold-500">JX Admin Dashboard</h1>
+            <button
+              onClick={() => setView('public')}
+              className="bg-neutral-800 text-white px-4 py-2 rounded-lg hover:bg-neutral-700 transition-colors"
+            >
+              ← Back to Site
+            </button>
+          </div>
+        </nav>
+
+        {/* Admin Content */}
+        <div className="container mx-auto px-6 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+
+            {/* Stats Cards */}
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-lg font-semibold text-white mb-2">Total Events</h3>
+              <p className="text-3xl font-bold text-gold-500">{events.length}</p>
+              <p className="text-neutral-400 text-sm">Upcoming shows</p>
+            </div>
+
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-lg font-semibold text-white mb-2">Projects</h3>
+              <p className="text-3xl font-bold text-gold-500">{projects.length}</p>
+              <p className="text-neutral-400 text-sm">Music releases</p>
+            </div>
+
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-lg font-semibold text-white mb-2">Bookings</h3>
+              <p className="text-3xl font-bold text-gold-500">12</p>
+              <p className="text-neutral-400 text-sm">This month</p>
+            </div>
+          </div>
+
+          {/* Management Sections */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            {/* Events Management */}
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-xl font-bold text-white mb-4">Events Management</h3>
+              <div className="space-y-3">
+                {events.map((event) => (
+                  <div key={event.id} className="flex items-center justify-between p-3 bg-neutral-800 rounded-lg">
+                    <div>
+                      <h4 className="text-white font-semibold">{event.title}</h4>
+                      <p className="text-neutral-400 text-sm">{event.date} • {event.city}</p>
+                    </div>
+                    <span className={`px-2 py-1 rounded text-xs uppercase font-bold ${
+                      event.status === 'Upcoming' ? 'bg-green-600 text-white' :
+                      event.status === 'Sold Out' ? 'bg-red-600 text-white' :
+                      'bg-neutral-600 text-white'
+                    }`}>
+                      {event.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <button className="w-full mt-4 bg-gold-500 text-black font-bold py-2 rounded-lg hover:bg-gold-400 transition-colors">
+                Add New Event
+              </button>
+            </div>
+
+            {/* Projects Management */}
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-xl font-bold text-white mb-4">Projects Management</h3>
+              <div className="space-y-3">
+                {projects.map((project) => (
+                  <div key={project.id} className="flex items-center justify-between p-3 bg-neutral-800 rounded-lg">
+                    <div>
+                      <h4 className="text-white font-semibold">{project.title}</h4>
+                      <p className="text-neutral-400 text-sm">{project.type}</p>
+                    </div>
+                    <span className="text-gold-500 text-sm">Active</span>
+                  </div>
+                ))}
+              </div>
+              <button className="w-full mt-4 bg-gold-500 text-black font-bold py-2 rounded-lg hover:bg-gold-400 transition-colors">
+                Add New Project
+              </button>
+            </div>
+
+            {/* Content Management */}
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-xl font-bold text-white mb-4">Content Management</h3>
+              <div className="space-y-3">
+                <div className="p-3 bg-neutral-800 rounded-lg">
+                  <h4 className="text-white font-semibold">Hero Section</h4>
+                  <p className="text-neutral-400 text-sm">Update main banner image and text</p>
+                </div>
+                <div className="p-3 bg-neutral-800 rounded-lg">
+                  <h4 className="text-white font-semibold">About Section</h4>
+                  <p className="text-neutral-400 text-sm">Edit artist biography and stats</p>
+                </div>
+                <div className="p-3 bg-neutral-800 rounded-lg">
+                  <h4 className="text-white font-semibold">Social Links</h4>
+                  <p className="text-neutral-400 text-sm">Update streaming platforms</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Analytics Preview */}
+            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+              <h3 className="text-xl font-bold text-white mb-4">Site Analytics</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-neutral-400">Page Views</span>
+                  <span className="text-white font-bold">12,847</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-neutral-400">Newsletter Subscribers</span>
+                  <span className="text-white font-bold">3,421</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-neutral-400">Booking Inquiries</span>
+                  <span className="text-white font-bold">28</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-neutral-400">Store Sales</span>
+                  <span className="text-white font-bold">$2,847</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Demo Note */}
+          <div className="mt-8 bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+            <h3 className="text-xl font-bold text-white mb-4">🚀 Portfolio Demo Dashboard</h3>
+            <p className="text-neutral-400 mb-4">
+              This is a demonstration admin dashboard for the JX artist portfolio. In a real application,
+              this would connect to a database and allow full content management.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <h4 className="text-gold-500 font-semibold mb-2">Features Demonstrated:</h4>
+                <ul className="text-neutral-400 space-y-1">
+                  <li>• Content management interface</li>
+                  <li>• Analytics dashboard</li>
+                  <li>• CRUD operations preview</li>
+                  <li>• Admin navigation system</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-gold-500 font-semibold mb-2">Real Implementation Would Include:</h4>
+                <ul className="text-neutral-400 space-y-1">
+                  <li>• User authentication</li>
+                  <li>• Database integration</li>
+                  <li>• File upload system</li>
+                  <li>• Real-time updates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
