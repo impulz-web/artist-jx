@@ -19,8 +19,8 @@ const Store: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     {
       id: 1,
       image: '/merch 1.jpg',
-      title: 'KHIM SWAQ Classic Tee',
-      description: 'Premium cotton t-shirt featuring the iconic KHIM SWAQ logo. Comfortable fit for everyday wear.',
+      title: 'JX Classic Tee',
+      description: 'Premium cotton t-shirt featuring the iconic JX logo. Comfortable fit for everyday wear.',
       price: 29.99,
       category: 'Apparel',
       rating: 4.8,
