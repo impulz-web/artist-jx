@@ -13,11 +13,13 @@ import Footer from './components/Footer';
 import StreamingOverlay from './components/StreamingOverlay';
 import Gallery from './components/Gallery';
 import Store from './components/Store';
+import Newsletter from './components/Newsletter';
+import News from './components/News';
 import { Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- STATE ---
-  const [view, setView] = useState<'public' | 'dashboard' | 'gallery' | 'store'>('public');
+  const [view, setView] = useState<'public' | 'dashboard' | 'gallery' | 'store' | 'news'>('public');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showStreamingOverlay, setShowStreamingOverlay] = useState(false);
@@ -119,7 +121,13 @@ const App: React.FC = () => {
                         {item}
                     </button>
                 ))}
-                <button 
+                <button
+                  onClick={() => setView('news')}
+                  className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'news' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
+                >
+                  News
+                </button>
+                <button
                   onClick={() => setView('gallery')}
                   className={`text-sm uppercase font-bold tracking-widest transition-colors ${view === 'gallery' ? 'text-gold-500' : 'text-white hover:text-gold-500'}`}
                 >
@@ -147,6 +155,7 @@ const App: React.FC = () => {
                     {item}
                 </button>
             ))}
+             <button onClick={() => { setView('news'); setMobileMenuOpen(false); }} className="text-2xl uppercase font-bold tracking-widest text-gold-500">News</button>
              <button onClick={() => { setView('gallery'); setMobileMenuOpen(false); }} className="text-2xl uppercase font-bold tracking-widest text-gold-500">Gallery</button>
         </div>
       )}
@@ -164,6 +173,8 @@ const App: React.FC = () => {
           <Store onBack={() => setView('public')} />
         ) : view === 'gallery' ? (
           <Gallery images={galleryImages} />
+        ) : view === 'news' ? (
+          <News />
         ) : (
           <>
             <Hero
@@ -188,6 +199,7 @@ const App: React.FC = () => {
             />
             <Booking onBookingSubmit={handleBookingSubmit} />
             <About data={aboutData} />
+            <Newsletter />
           </>
         )}
       </main>
